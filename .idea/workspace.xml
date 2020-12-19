@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aeb4715d-b442-4fa0-b147-ccf450dfe60f" name="Default Changelist" comment="" />
+    <list default="true" id="aeb4715d-b442-4fa0-b147-ccf450dfe60f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/src/App.vue" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604049814988</updated>
       <workItem from="1604049816576" duration="311000" />
+      <workItem from="1604139190213" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="remove">
       <created>1604049985858</created>
@@ -63,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604049985858</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="delete readme">
+      <created>1604050520814</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604050520814</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,7 +85,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -82,6 +95,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="remove" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove" />
+    <MESSAGE value="delete readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete readme" />
   </component>
 </project>
