@@ -8,3 +8,4 @@
     + vue
     + vuex
     + vue-cli
+    + element-ui
