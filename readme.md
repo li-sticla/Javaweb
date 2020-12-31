@@ -17,11 +17,11 @@
 - 主要技术栈(前端)：
 
   + Vue
-+ VueRouter
+  + VueRouter
   + Axios
-+ Bootstrap
+  + Bootstrap
   + Vuex
-+ Element-ui
+  + Element-ui
   
  - 主要技术栈(后端)：
 

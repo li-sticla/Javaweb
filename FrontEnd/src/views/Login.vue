@@ -38,9 +38,8 @@ export default {
         this.$message.error('请输入密码！');
         return;
       } else {
-        //校验用户名和密码是否正确;
-        sessionStorage.setItem("flag", 1);
-        this.$router.push({ path: "/personal" });
+        //前端调试;
+        // this.$router.push({ path: "/personal" });
         axios
           .post('/login/', {
             name: this.user.username,

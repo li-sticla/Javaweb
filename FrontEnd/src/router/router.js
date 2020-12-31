@@ -77,6 +77,11 @@ export default [
             }
         }]
     },
+    // bus
+    {
+        path:'/store',
+        component: () => import('@/store/store.vue')
+    },
     // 404处理,必须放置在最后
     {
         path:'*',
