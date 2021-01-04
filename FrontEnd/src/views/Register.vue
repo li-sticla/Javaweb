@@ -18,7 +18,7 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'login',
+  name: 'register',
   data() {
     return {
       user: {
@@ -49,12 +49,8 @@ export default {
           return;
         } else {
           this.$router.push({ path: '/' }); //无需向后台提交数据，方便前台调试
-          axios
-            .post('/register/', {
-              name: this.user.username,
-              email: this.user.email,
-              password: this.user.password
-            })
+
+          this.$axios.register()
             .then(res => {
               // console.log("输出response.data", res.data);
               // console.log("输出response.data.status", res.data.status);

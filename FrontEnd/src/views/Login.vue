@@ -28,7 +28,6 @@ export default {
       }
     };
   },
-  created() {},
   methods: {
     doLogin() {
       if (!this.user.username) {
@@ -39,24 +38,30 @@ export default {
         return;
       } else {
         //前端调试;
-        // this.$router.push({ path: "/personal" });
-        axios
-          .post('/login/', {
+        const dat ={
             name: this.user.username,
             password: this.user.password
-          })
+            }
+
+        this.$axios.login(dat)
           .then(res => {
+            console.log(res)
             // console.log("输出response.data.status", res.data.status);
             if (res.data.status === 200) {
               this.$router.push({ path: '/personal' });
             } else {
               alert('您输入的用户名或密码错误！');
             }
-          });
+          }
+          )
+          .catch(err =>{
+            console.log(err)
+          }
+          );
       }
     }
   }
-};
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
