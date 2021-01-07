@@ -1,33 +1,52 @@
 // 用于配置路由列表
-import Home from '@/views/Home'
 import Login from '@/views/Login'
-
-
+import Nav from '@/components/Nav'
+import foot from '@/components/foot'
+import Carousel from '@/components/Carousel'
+import Home from '@/views/Home'
 export default [
     {
         path:'/',
         name:'home',
         alias:'/home',
-        component:Home
+        components:{
+            default: Nav,
+            carousel:  Carousel,
+            body: Home,
+            foot: foot,
+        },
+    },
+    {
+        path:'/:pageid',
+        components:{
+            default: Nav,
+            carousel: Carousel,
+            body:Home,
+            foot: foot
+        }
     },
     {
         path: '/login',
         name: 'login',
-        component: Login
+        components: {
+            default: Login,
+            foot: foot
+        }
     },
     // 懒加载,访问页面时加载vue组件
     {
         path: '/register',
         name: 'register',
-        component: () => import('@/views/Register.vue')
+        components: {
+            default: () => import('@/views/Register.vue'),
+            foot: foot
+        }
     },
     {
-        path: '/about',
-        name: 'about',
-        component: () => import('@/views/About.vue'),
-       props:route =>({
-           food: route.query.food
-       })
+        path: '/news/:id',
+        name: 'news',
+        component: () => import('@/views/News.vue'),
+       props:true 
     },
     // 动态路由匹配
     {
@@ -64,7 +83,7 @@ export default [
         path:'/settings',
         components: {
             default: () => import('@/components/UserSettings.vue'),
-            foot: () => import('@/components/foot.vue')
+            foot: foot
         },
         children: [{
             path:'emails',

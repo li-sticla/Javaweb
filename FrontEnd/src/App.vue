@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <router-view />
+    <router-view name="carousel"/>
+    <router-view name="body"/>
     <router-view name="foot"/>
   </div>
 </template>

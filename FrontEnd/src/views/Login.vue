@@ -25,10 +25,15 @@
               placeholder="请输入密码"
             ></el-input
           ></el-form-item>
-                <vue-simple-verify ref="verify" @success="success()" />
+          <vue-simple-verify ref="verify" @success="success()" />
           <router-link :to="{ name: 'register' }">注册账号</router-link>
           <el-form-item
-            ><el-button type="primary" icon="el-icon-upload" @click="doLogin()" :disabled = status
+            ><el-button
+              type="primary"
+              icon="el-icon-upload"
+              v-loading.fullscreen.lock="fullscreenLoading"
+              @click="doLogin(), openFullScreen()"
+              :disabled="status"
               >登 录</el-button
             ></el-form-item
           >
@@ -40,16 +45,17 @@
 
 <script>
 import axios from "axios";
-import VueSimpleVerify from 'vue-simple-verify'
-import '../../node_modules/vue-simple-verify/dist/vue-simple-verify.css'
+import VueSimpleVerify from "vue-simple-verify";
+import "../../node_modules/vue-simple-verify/dist/vue-simple-verify.css";
 export default {
   name: "login",
   components: {
-    VueSimpleVerify
+    VueSimpleVerify,
   },
   data() {
     return {
       status: true,
+      fullscreenLoading: false,
       user: {
         username: "",
         password: "",
@@ -57,8 +63,19 @@ export default {
     };
   },
   methods: {
-    success(){
-      this.status = false
+    success() {
+      this.status = false;
+    },
+    openFullScreen() {
+      const loading = this.$loading({
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
+      setTimeout(() => {
+        loading.close();
+      }, 2000);
     },
     doLogin() {
       if (!this.user.username) {
@@ -130,7 +147,7 @@ export default {
 }
 
 #password {
-  margin-bottom: 5px;
+  margin-bottom: 25px;
 }
 h3 {
   color: #0babeab8;
@@ -152,5 +169,4 @@ a:hover {
   width: 80%;
   margin-left: -50px;
 }
-
 </style>

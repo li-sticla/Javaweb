@@ -11,17 +11,17 @@ const router= new Router({
 })
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
-router.beforeEach((to, from, next) => {
-if (to.path === '/login') {
-    next();
-} else {
-  let token = window.localStorage.getItem('token');
-  if ((token === null || token === '')&& to.path !== '/register') {
-    next({path: '/login'});
-  } else {
-    next();
-  }
-}
-});
+// router.beforeEach((to, from, next) => {
+// if (to.path === '/login') {
+//     next();
+// } else {
+//   let token = window.localStorage.getItem('token');
+//   if ((token === null || token === '')&& to.path !== '/register') {
+//     next({path: '/login'});
+//   } else {
+//     next();
+//   }
+// }
+// });
 // 暴露路由
 export default router
