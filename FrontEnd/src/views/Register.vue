@@ -75,10 +75,10 @@ export default {
           this.$message.error("请输入密码！");
           return;
         } else {
-          // this.$router.push({ path: '/' }); //无需向后台提交数据，方便前台调试
+          
           let _this = this;
 
-          const params = {
+          const form = {
             username: this.user.username,
             nickname: this.user.nickname,
             email: this.user.email,
@@ -88,8 +88,8 @@ export default {
           this.$axios({
             method: "post",
             url: "/user/register",
-            data: params,
-            headers: { Authorization: "Basic dXNlcjoxMjM0NTY=" },
+            data: form,
+            headers: { 'Authorization': "Basic dXNlcjoxMjM0NTY=" },
           }).then((res) => {
             console.log("输出response.data", res.data);
             if (res.data.code === 1) {

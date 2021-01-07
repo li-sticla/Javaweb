@@ -25,9 +25,10 @@
               placeholder="请输入密码"
             ></el-input
           ></el-form-item>
+                <vue-simple-verify ref="verify" @success="success()" />
           <router-link :to="{ name: 'register' }">注册账号</router-link>
           <el-form-item
-            ><el-button type="primary" icon="el-icon-upload" @click="doLogin()"
+            ><el-button type="primary" icon="el-icon-upload" @click="doLogin()" :disabled = status
               >登 录</el-button
             ></el-form-item
           >
@@ -39,11 +40,16 @@
 
 <script>
 import axios from "axios";
-import { mapMutations } from "vuex";
+import VueSimpleVerify from 'vue-simple-verify'
+import '../../node_modules/vue-simple-verify/dist/vue-simple-verify.css'
 export default {
   name: "login",
+  components: {
+    VueSimpleVerify
+  },
   data() {
     return {
+      status: true,
       user: {
         username: "",
         password: "",
@@ -51,7 +57,9 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["changeLogin"]),
+    success(){
+      this.status = false
+    },
     doLogin() {
       if (!this.user.username) {
         this.$message.error("请输入用户名！");
@@ -61,7 +69,7 @@ export default {
         return;
       } else {
         //封装请求数据
-        const params = {
+        const form = {
           username: this.user.username,
           password: this.user.password,
         };
@@ -69,21 +77,24 @@ export default {
         this.$axios({
           method: "post",
           url: "/user/login",
-          data: params,
+          data: form,
         })
           .then((res) => {
-            console.log(res);
             let _this = this;
             if (res.data.code === 1) {
               _this.userToken = res.data.data.token;
-              _this.changeLogin({ token: _this.userToken });
-              _this.$message({
-                message: "恭喜你，登录成功,即将进入主页",
-                type: "success",
-              });
-              setTimeout(() => {_this.$router.push({ path: "/" })}, 2000);
+              _this.$store.commit("changeLogin", { token: _this.userToken });
+              if (_this.$store.state.token) {
+                _this.$message({
+                  message: "恭喜你，登录成功,即将进入主页",
+                  type: "success",
+                });
+                setTimeout(() => {
+                  _this.$router.push({ path: "/" });
+                }, 2000);
+              }
             } else {
-              _this.$message.error('您输入的用户名或密码错误！');
+              _this.$message.error("您输入的用户名或密码错误！");
             }
           })
           .catch((err) => {
@@ -141,4 +152,5 @@ a:hover {
   width: 80%;
   margin-left: -50px;
 }
+
 </style>

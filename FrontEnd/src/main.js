@@ -7,9 +7,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // import serve from '@/server/api.js'
 Vue.use(ElementUI)
-//全局配置,将axios挂载到vue原型上
+//全局配置,挂载到vue原型上
 axios.defaults.baseURL = 'http://192.168.43.53:8080'
 Vue.prototype.$axios = axios
+Vue.prototype.$store = store
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

@@ -15,10 +15,9 @@ router.beforeEach((to, from, next) => {
 if (to.path === '/login') {
     next();
 } else {
-  let token = localStorage.getItem('token');
-
-  if (token === 'null' || token === '') {
-    next('/login');
+  let token = window.localStorage.getItem('token');
+  if ((token === null || token === '')&& to.path !== '/register') {
+    next({path: '/login'});
   } else {
     next();
   }
