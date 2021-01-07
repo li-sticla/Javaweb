@@ -8,11 +8,11 @@
 export default {
   methods:{
     getData(){
-      this.$axios.get('/api/toutiao/index',{
-    params: {
-    type: 'top',
-    key:'b97ad518db98988c4eb08fc85d736fee',
-    },
+      this.$axios.post('/register',{
+    // params: {
+    // type: 'top',
+    // key:'b97ad518db98988c4eb08fc85d736fee',
+    // },
     // headers: {Authorization: "Basic dXNlcjoxMjM0NTY="}
   })
       .then(res =>{

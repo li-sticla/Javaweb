@@ -9,24 +9,20 @@ const router= new Router({
   routes,
   mode:'history'
 })
-// 登录判断
-// const HAS_LOGINED=false
-// 创建全局导航守卫
-// router.beforeEach((to,from,next)=>{
-    
-//   let flag = sessionStorage.getItem('flag ')
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+router.beforeEach((to, from, next) => {
+if (to.path === '/login') {
+    next();
+} else {
+  let token = localStorage.getItem('token');
 
-//   if(to.meta.requireAuth == true){ // 需要登录权限进入的路由
-//       if(!flag){                   // 获取不到登录信息
-//           next({
-//               path: '/login'
-//           })
-//       }else{                       // 获取到登录信息，进行下一步
-//           return next();
-//       }
-//   }else{                           // 不需要登录权限的路由直接进行下一步
-//       return next();
-//   }
-// })
-// 暴露路由接口
+  if (token === 'null' || token === '') {
+    next('/login');
+  } else {
+    next();
+  }
+}
+});
+// 暴露路由
 export default router

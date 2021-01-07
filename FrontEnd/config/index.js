@@ -6,20 +6,28 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
+    open: true,
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
+    proxy: {
       '/api': {
-        target: 'http://v.juhe.cn',//设置你调用的接口域名和端口号 别忘了加http
+        target: 'http://10.102.98.61:8080',//设置你调用的接口域名和端口号 别忘了加http
         changeOrigin: true,//允许跨域
         pathRewrite: {
           '^/api': '' //这个是定义要访问的路径，名字随便写 
         }
       }
     },
-
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://v.juhe.cn',//设置你调用的接口域名和端口号 别忘了加http
+    //     changeOrigin: true,//允许跨域
+    //     pathRewrite: {
+    //       '^/api': '' //这个是定义要访问的路径，名字随便写 
+    //     }
+    //   }
+    // },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
