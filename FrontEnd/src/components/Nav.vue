@@ -23,7 +23,13 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      activeIndex: '1',
+    }
+  }
+};
 </script>
 <style scoped>
 ul {

@@ -17,7 +17,7 @@ export default [
         },
     },
     {
-        path:'/:pageid',
+        path:'/:pageNo',
         components:{
             default: Nav,
             carousel: Carousel,
@@ -43,10 +43,12 @@ export default [
         }
     },
     {
-        path: '/news/:id',
+        path: '/news/:newsId',
         name: 'news',
-        component: () => import('@/views/News.vue'),
-       props:true 
+        components:{
+            default: () => import('@/views/News.vue'),
+            foot: foot
+        } 
     },
     // 动态路由匹配
     {

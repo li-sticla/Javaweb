@@ -25,7 +25,7 @@
         @next-click="handleNextClick()"
         :current-page="currentPage"
         :page-sizes="[10, 20, 30, 40]"
-        :page-size="100"
+        :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
         :total="400"
       >
@@ -37,7 +37,7 @@
 export default {
   data() {
     return {
-      currentPage: '',
+      currentPage: 1,
       currentPageData: [
         {
           newsId: 1,
@@ -69,9 +69,28 @@ export default {
           console.log(err);
         });
     },
+    handleCurrentChange() {
+      alert(a);
+    },
+    handlePrevClick() {
+      alert(a);
+    },
+    handleSizeChange(size) {
+      // 每页显示的数量是我们选择器选中的值size
+      this.pageSize = size;
+      console.log(this.pageSize); //每页下拉显示数据
+    },
+    setCurrentPageData() {
+      let begin = (this.currentPage - 1) * this.pageSize;
+      let end = this.currentPage * this.pageSize;
+      this.currentPageData = this.productList.slice(begin, end);
+    },
   },
   mounted() {
-      alert(this.currentPage)
+    // if (this.$route.params.pageNO) {
+    //   let currentPage = this.$route.params.pageNO;
+    //   alert(1);
+    // }
     this.requestData();
   },
 };
