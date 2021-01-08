@@ -22,23 +22,23 @@ export default {
         images: [
           {
             name: "bigScreen01",
-            url: "static/images/dp01.jpg",
+            url: "/static/images/dp01.jpg",
           },
           {
             name: "bigScreen02",
-            url: "static/images/dp02.jpg",
+            url: "/static/images/dp02.jpg",
           },
           {
             name: "bigScreen03",
-            url: "static/images/dp03.jpg",
+            url: "/static/images/dp03.jpg",
           },
           {
             name: "bigScreen04",
-            url: "static/images/dp04.jpg",
+            url: "/static/images/dp04.jpg",
           },
           {
             name: "bigScreen05",
-            url: "static/images/dp05.jpg",
+            url: "/static/images/dp05.jpg",
           },
         ],
       },

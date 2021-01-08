@@ -4,55 +4,48 @@
       <el-row>
         <el-col class="list"> 最新资讯 </el-col>
       </el-row>
+      <el-divider></el-divider>
       <el-row>
         <el-col v-for="item in currentPageData" :key="item.newsId">
           <el-card shadow="hover">
-            <router-link :to="'/news/' + item.newsId">
-              {{ item.type }}
+            <router-link :to="'/news/detail/' + item.newsId">
+              {{ `新闻类型：${item.type}` }}
             </router-link>
-            <router-link :to="'/news/' + item.newsId">
-              {{ item.content }}
+            <router-link :to="'/news/detail/' + item.newsId">
+              {{ `新闻标题：${item.title} `}}
+            </router-link>
+            <router-link :to="'/news/detail/' + item.newsId">
+              {{ `发布时间: ${item.publish_time} ` }}
             </router-link>
           </el-card>
+          <el-divider></el-divider>
         </el-col>
       </el-row>
     </div>
     <div class="block">
       <el-pagination
-        @size-change="handleSizeChange()"
-        @current-change="handleCurrentChange()"
-        @prev-click="handlePrevClick()"
-        @next-click="handleNextClick()"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
+        :page-sizes="pageSizes"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="total"
       >
       </el-pagination>
     </div>
   </div>
 </template>
 <script>
+import Axios from "axios";
 export default {
   data() {
     return {
       currentPage: 1,
-      currentPageData: [
-        {
-          newsId: 1,
-          content: "修改内容0",
-          type: "国内",
-          publish_time: "2021-01-07 13:03:21",
-        },
-        {
-          newsId: 2,
-          content: "新内容",
-          type: "国际",
-          publish_time: "2021-01-07 13:22:06",
-        },
-      ],
+      currentPageData: [],
+      pageSizes: [10, 15, 20, 25],
       pageSize: 10,
+      total: 100,
     };
   },
   methods: {
@@ -60,45 +53,38 @@ export default {
       this.$axios({
         method: "get",
         url: "/news/all",
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.pageSize,
+        },
       })
         .then((res) => {
           console.log(res);
-          this.currentPageData = res;
+          this.currentPageData = res.data.data.list;
+          this.total = res.data.data.total;
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    handleCurrentChange() {
-      alert(a);
-    },
-    handlePrevClick() {
-      alert(a);
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      console.log(this.currentPage); //点击第几页
+      this.requestData();
     },
     handleSizeChange(size) {
-      // 每页显示的数量是我们选择器选中的值size
+      // 每页显示的数量是选择器选中的值size
       this.pageSize = size;
       console.log(this.pageSize); //每页下拉显示数据
-    },
-    setCurrentPageData() {
-      let begin = (this.currentPage - 1) * this.pageSize;
-      let end = this.currentPage * this.pageSize;
-      this.currentPageData = this.productList.slice(begin, end);
+      this.requestData();
     },
   },
   mounted() {
-    // if (this.$route.params.pageNO) {
-    //   let currentPage = this.$route.params.pageNO;
-    //   alert(1);
-    // }
     this.requestData();
   },
 };
 </script>
 <style scoped>
-#body {
-  height: 1000px;
-}
 .news >>> .list {
   display: flex;
   align-items: center;
