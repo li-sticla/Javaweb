@@ -33,6 +33,7 @@ export default [
       foot: foot,
     },
   },
+    // 动态路由匹配
   {
     path: "/news/detail/:newsId",
     name: "news",
@@ -42,7 +43,6 @@ export default [
       foot: foot,
     },
   },
-  // 动态路由匹配
   {
     path: "/user",
     components: {

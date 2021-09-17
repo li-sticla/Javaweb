@@ -7,7 +7,7 @@
     >
       <h3 class="medium">
         <img
-          :src="item.url"
+          :src="require(`../${item.url}`)"
           style="width: 100%"
         />
       </h3>
@@ -22,23 +22,23 @@ export default {
         images: [
           {
             name: "bigScreen01",
-            url: "/static/images/dp01.jpg",
+            url:"assets/images/bg1.png",
           },
           {
             name: "bigScreen02",
-            url: "/static/images/dp02.jpg",
+            url: "assets/images/bg1.png",
           },
           {
             name: "bigScreen03",
-            url: "/static/images/dp03.jpg",
+            url: "assets/images/bg1.png",
           },
           {
             name: "bigScreen04",
-            url: "/static/images/dp04.jpg",
+            url: "assets/images/bg1.png",
           },
           {
             name: "bigScreen05",
-            url: "/static/images/dp05.jpg",
+            url: "assets/images/bg1.png",
           },
         ],
       },

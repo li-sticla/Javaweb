@@ -1,21 +1,22 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-
-state: {
+  state: {
     // 存储token
-    token: window.localStorage.getItem('token') ? localStorage.getItem('token') : ''
-},
+    token: window.localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : "",
+  },
 
-mutations: {
+  mutations: {
     // 修改token，并将token存入localStorage
-    changeLogin (state, user) {
+    changeLogin(state, user) {
       state.token = user.token;
-      window.localStorage.setItem('token', user.token);
-    }
-  }
+      window.localStorage.setItem("token", user.token);
+    },
+  },
 });
 
 export default store;
